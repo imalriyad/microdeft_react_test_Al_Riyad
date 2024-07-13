@@ -1,5 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import "./index.css";
+import ProductAdd from "./ProductAdd";
+import Card from "./Card/Card";
 
 function App() {
   const [cardData, setCardData] = useState([]);
@@ -7,13 +10,21 @@ function App() {
     const data = await axios.get(
       "https://react-interview.1putym.easypanel.host/api/product?email=naim.microdeft@gmail.com"
     );
-    console.log(data.data);
+    setCardData(data?.data.data);
   };
-  getCardData();
+  useEffect(() => {
+    getCardData();
+  }, []);
+console.log(cardData);
   return (
     <>
-      <div className="">
-        <img src="./" alt="" />
+    
+      
+      <ProductAdd></ProductAdd>
+      <div className="flex flex-wrap gap-2 mx-auto max-w-screen-xl px-4 ">
+        {
+          cardData.map((item)=> <Card key={item.id} cardInfo={item}></Card>)
+       }
       </div>
     </>
   );
