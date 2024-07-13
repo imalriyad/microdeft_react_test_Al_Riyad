@@ -21,7 +21,7 @@ console.log(cardData);
     
       
       <ProductAdd></ProductAdd>
-      <div className="flex flex-wrap gap-2 mx-auto max-w-screen-xl px-4 ">
+      <div className="grid grid-cols-3  gap-5 pt-10 mx-auto max-w-screen-xl px-4 ">
         {
           cardData.map((item)=> <Card key={item.id} cardInfo={item}></Card>)
        }
